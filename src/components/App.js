@@ -1,5 +1,7 @@
+import ProductCard from "./ProductCard";
 import CheckoutForm from "./CheckoutForm";
-import Hero from "./Hero";
+import Hero from "./Hero"
+
 export default function App() {
   return (
     <>
@@ -7,6 +9,7 @@ export default function App() {
      
       <Hero />
       <CheckoutForm />
+      <ProductCard />
     </>
   );
 }
