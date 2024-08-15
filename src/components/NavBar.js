@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 const NavBar = () => {
+
   return (
     <nav
       style={{ backgroundColor: "#CBE3E5" }}

@@ -29,13 +29,14 @@ export default function App() {
         <Route
           path="/"
           element={
-            <div className="bg-[#BBBBBB]">
+            <div className="bg-[#bbbbbb]">
               <Hero />
-              <div className="container mx-auto px-4 pb-20 ml-10 mr-5">
-                <h2 className="text-2xl text-center font-bold">
+              <div className="container mx-auto px-4 py-8 bg-[#bbbbbb] w-full" >
+                <h2 className="text-2xl text-center font-bold text-black">
                   Featured Products
                 </h2>
-                <div className="flex gap-3 mr-8">
+                
+                <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6  ">
                   {featuredProducts.map((product) => {
                     return (
                       <ProductCard
