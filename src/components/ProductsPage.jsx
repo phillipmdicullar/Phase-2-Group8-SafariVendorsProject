@@ -64,20 +64,22 @@ const ProductsPage = () => {
   };
   return (
     <div className="bg-[#bbbbbb] mb-2">
-      <input
-        type="text"
-        placeholder="Search for Products"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="align-center"
-      />
+      <div className="flex justify-center items-center mb-10 mt-3">
+        <input
+          type="text"
+          placeholder="Search for Products"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="align-center mt-3 rounded-lg h-10 w-80 p-2 text-black"
+        />
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 pl-20 pr-20" >
         {filteredProducts.map((product) => {
           return <ProductCard key={product.id} product={product} />;
         })}
       </div>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 mt-8 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg text-center" >
         <Inputs
           placeholder="Enter Product name"
           type="text"
@@ -112,10 +114,11 @@ const ProductsPage = () => {
           value={image}
           required
           onChange={(e) => setImage(e.target.value)}
-        />
+        /><br/>
+        
         <button
           type="submit"
-          className="bg--500 text-black px-4 py-2 rounded hover:bg-green-600">
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
           Submit
         </button>
       </form>
