@@ -1,17 +1,20 @@
 import React from "react";
 
-const CartItems = ({ item, index }) => {
+const CartItems = ({ item }) => {
   return (
-    <tr className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}>
-      <td className="rounded-full w-20 h-20">{item.image}</td>
-      <td>{item.name}</td>
-      <td>{item.category}</td>
-      <td>{item.vendor}</td>
-      <td>{item.price}</td>
-      <td>{item.location}</td>
-      <td>
-        <input type="number" />
+    <tr>
+      <td className="py-2 border">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-16 h-16 object-cover"
+        />
       </td>
+      <td className="py-2 border">{item.name}</td>
+      <td className="py-2 border">{item.category}</td>
+      <td className="py-2 border">{item.vendor}</td>
+      <td className="py-2 border">Ksh {item.price}</td>
+      <td className="py-2 border">{item.quantity}</td>
     </tr>
   );
 };
