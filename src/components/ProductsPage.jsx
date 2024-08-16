@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { useState, useEffect } from "react";
 import Inputs from "./Inputs";
 
-const ProductsPage = () => {
+const ProductsPage = ({ handleAddToCart }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [vendor, setVendor] = useState("");
@@ -41,7 +39,7 @@ const ProductsPage = () => {
       image,
     };
 
-    fetch("http://localhost:3000/products", {
+    fetch("https://safarivendors-backend.vercel.app/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +50,6 @@ const ProductsPage = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Product added:", data);
-
         setProducts((prevProducts) => [...prevProducts, data]);
         setName("");
         setCategory("");
@@ -62,6 +59,7 @@ const ProductsPage = () => {
       })
       .catch((error) => console.error("Error adding product:", error));
   };
+
   return (
     <div className="bg-[#bbbbbb] mb-2">
       <div className="flex justify-center items-center mb-10 mt-3">
@@ -75,9 +73,13 @@ const ProductsPage = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 pl-20 pr-20">
-        {filteredProducts.map((product) => {
-          return <ProductCard key={product.id} product={product} />;
-        })}
+        {filteredProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            handleAddToCart={handleAddToCart}
+          />
+        ))}
       </div>
       <form
         onSubmit={handleSubmit}
@@ -118,7 +120,6 @@ const ProductsPage = () => {
           onChange={(e) => setImage(e.target.value)}
         />
         <br />
-
         <button
           type="submit"
           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
