@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductsPage from "./ProductsPage";
 import Cart from "./Cart";
+
 export default function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
@@ -19,7 +20,18 @@ export default function App() {
   const featuredProducts = products.slice(0, 3);
 
   const handleAddToCart = (product) => {
-    setCart([...cart, product]);
+    console.log("Adding to cart:", product);
+    setCart((prevCart) => {
+      const existingProduct = prevCart.find((item) => item.id === product.id);
+      if (existingProduct) {
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prevCart, { ...product, quantity: 1 }];
+    });
   };
 
   return (
@@ -31,28 +43,28 @@ export default function App() {
           element={
             <div className="bg-[#bbbbbb]">
               <Hero />
-              <div className="container mx-auto px-4 py-8 bg-[#bbbbbb] w-full" >
+              <div className="container mx-auto px-4 py-8 bg-[#bbbbbb] w-full">
                 <h2 className="text-2xl text-center font-bold text-black">
                   Featured Products
                 </h2>
-                
-                <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6  ">
-                  {featuredProducts.map((product) => {
-                    return (
-                      <ProductCard
-                        key={product.id}
-                        product={product}
-                        handleAddToCart={handleAddToCart}
-                      />
-                    );
-                  })}
+                <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                  {featuredProducts.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      handleAddToCart={handleAddToCart}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
           }
         />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/products"
+          element={<ProductsPage handleAddToCart={handleAddToCart} />}
+        />
+        <Route path="/cart" element={<Cart cartItems={cart} />} />
       </Routes>
     </Router>
   );
