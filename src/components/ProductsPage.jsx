@@ -15,7 +15,7 @@ const ProductsPage = () => {
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("https://safarivendors-backend.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -74,12 +74,14 @@ const ProductsPage = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 pl-20 pr-20" >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 pl-20 pr-20">
         {filteredProducts.map((product) => {
           return <ProductCard key={product.id} product={product} />;
         })}
       </div>
-      <form onSubmit={handleSubmit} className="space-y-4 mt-8 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg text-center" >
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 mt-8 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg text-center">
         <Inputs
           placeholder="Enter Product name"
           type="text"
@@ -114,8 +116,9 @@ const ProductsPage = () => {
           value={image}
           required
           onChange={(e) => setImage(e.target.value)}
-        /><br/>
-        
+        />
+        <br />
+
         <button
           type="submit"
           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">

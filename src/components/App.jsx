@@ -10,7 +10,7 @@ export default function App() {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("https://safarivendors-backend.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setProducts(data.slice(0, 3)))
       .catch((err) => console.log(err));
