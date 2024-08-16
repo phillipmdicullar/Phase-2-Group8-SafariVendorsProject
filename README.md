@@ -4,7 +4,7 @@
 
 ## 🎨 Preview ![safari-vendors](https://github.com/user-attachments/assets/6b58cade-f043-4b1d-9344-fa8aefbf9d3a)
 
-## 🚀 Live Demo Check out the live version of Safari Vendors here: [**Safari Vendors on Vercel**](https://your-vercel-link)
+## 🚀 Live Demo Check out the live version of Safari Vendors here: [**Safari Vendors on Vercel**](https://phase-2-group8-safari-vendors-project.vercel.app/products)
 
 ## Hosted Json-server [https://safarivendors-backend.vercel.app/products](https://safarivendors-backend.vercel.app/products)
 
